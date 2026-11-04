@@ -1,0 +1,16 @@
+repository/gogit_storage.go
+  h_4db53f42b9be42 253-255,270
+repository/gogit_storage_test.go
+  h_4db53f42b9be42 561-565
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f08e0ec229bc712ae3afb73c2f2ef7855c2326d6",
+  "prompts": {},
+  "humans": {
+    "h_4db53f42b9be42": {
+      "author": "Trevor Vaughan <peiriannydd@gmail.com>"
+    }
+  }
+}
