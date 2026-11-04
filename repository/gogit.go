@@ -18,10 +18,12 @@ import (
 	gogit "github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/config"
 	"github.com/go-git/go-git/v5/plumbing"
+	"github.com/go-git/go-git/v5/plumbing/cache"
 	"github.com/go-git/go-git/v5/plumbing/filemode"
 	fdiff "github.com/go-git/go-git/v5/plumbing/format/diff"
 	"github.com/go-git/go-git/v5/plumbing/object"
 	"github.com/go-git/go-git/v5/storage"
+	"github.com/go-git/go-git/v5/storage/filesystem"
 	lru "github.com/hashicorp/golang-lru/v2"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/sync/singleflight"
@@ -86,7 +88,7 @@ func OpenGoGitRepo(path, namespace string, clockLoaders []ClockLoader) (*GoGitRe
 		return nil, err
 	}
 
-	r, err := gogit.PlainOpen(path)
+	r, err := gogit.Open(relativeWorktreesStorage{filesystem.NewStorage(osfs.New(path), cache.NewObjectLRUDefault())}, nil)
 	if err != nil {
 		return nil, err
 	}

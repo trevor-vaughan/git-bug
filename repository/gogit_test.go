@@ -162,3 +162,22 @@ func TestGoGit_DetectsSubmodules(t *testing.T) {
 	assert.Empty(t, err)
 	assert.Equal(t, expected, result)
 }
+
+// git worktree add --relative-paths sets extensions.relativeWorktrees, which
+// go-git v5 refuses. It only changes how git writes the links between a linked
+// worktree and the repository, so opening must succeed regardless.
+func TestOpenGoGitRepo_RelativeWorktrees(t *testing.T) {
+	repo := CreateGoGitTestRepo(t, false)
+	root := goGitRepoDir(t, repo)
+	require.NoError(t, repo.Close())
+
+	cfgPath := filepath.Join(root, ".git", "config")
+	cfg, err := os.ReadFile(cfgPath)
+	require.NoError(t, err)
+	cfg = append(cfg, []byte("[core]\n\trepositoryformatversion = 1\n[extensions]\n\trelativeWorktrees = true\n")...)
+	require.NoError(t, os.WriteFile(cfgPath, cfg, 0o600))
+
+	reopened, err := OpenGoGitRepo(root, "git-bug", nil)
+	require.NoError(t, err)
+	require.NoError(t, reopened.Close())
+}
