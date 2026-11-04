@@ -1,0 +1,22 @@
+repository/gogit_storage.go
+  s_2df9e11964531d::t_ef430658fed102 253-255,270
+repository/gogit_storage_test.go
+  s_2df9e11964531d::t_ef430658fed102 562-565
+  s_2df9e11964531d::t_6de292eab947a8 561
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "de3d8b327ff8c5b1c55bf6f533dbab976f8613f3",
+  "prompts": {},
+  "sessions": {
+    "s_2df9e11964531d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4c464c70-b8bc-48f2-b70c-bccb6931cbe6",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Trevor Vaughan <peiriannydd@gmail.com>"
+    }
+  }
+}
